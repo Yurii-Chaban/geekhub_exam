@@ -1,0 +1,104 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "grids";
+@import "compass/reset";
+
+@mixin transition {
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+.logo-wrapper {
+  .logo {
+    display: block;
+    margin: 20px auto;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    overflow: hidden;
+  }
+}
+#page {
+  @include container();
+  padding: 0 15px;
+}
+.copyright {
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  .design-sign {
+    color: #2df555;
+  }
+}
+.social-icons {
+  display: inline;
+  float: left;
+  margin: 40px 0px;
+  width: 100%;
+
+  li {
+    display: inline-block;
+    margin: 0 2px;
+
+    a {
+      border: 1px solid #505050;
+      border-radius: 50%;
+      color: #b8b8b8;
+      display: inline-block;
+      font-size: 18px;
+      height: 48px;
+      line-height: 48px;
+      margin: 0 9px;
+      text-align: center;
+      width: 48px;
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -ms-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+    .facebook:hover{
+      background-color: #3b5998;
+      border-color: #3b5998;
+      color: #fff;
+    }
+    .twitter {
+      &:hover{
+        color: #fff;
+        background-color: #00aced;
+        border-color: #00aced;
+      }
+    }
+    .google-plus {
+      &:hover{
+        color: #fff;
+        background-color: #dd4b39;
+        border-color: #dd4b39;
+      }
+    }
+    .youtube {
+      &:hover{
+        color: #fff;
+        background-color: #bb0000;
+        border-color: #bb0000;
+      }
+    }
+    .linkedin {
+      &:hover{
+        color: #fff;
+        background-color: #007bb5;
+        border-color: #007bb5;
+      }
+    }
+    .dribbble {
+      &:hover{
+        color: #fff;
+        background-color: #ea4c89;
+        border-color: #ea4c89;
+      }
+    }
+  }
+}
