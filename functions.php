@@ -133,6 +133,8 @@ function gh_exam_scripts() {
 
 	wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 
+	wp_enqueue_style('flexslider', get_template_directory_uri() . '/stylesheets/flexslider.css');;
+
 	wp_enqueue_style('rex_style', get_template_directory_uri() . '/stylesheets/screen.css');
 
 
@@ -146,14 +148,17 @@ function gh_exam_scripts() {
 
 	wp_register_script('isotope', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/1.5.25/jquery.isotope.min.js", array(), false, true);
 
+
 	wp_enqueue_script( 'gh_exam-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 	wp_deregister_script('jquery');
-	wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
+	wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js", array(), false, true);
 	wp_enqueue_script('jquery');
+
+	wp_register_script('jquery-flexslider', get_template_directory_uri() . '/js/jquery.flexslider.js', array(), false, true);
 
 	wp_deregister_script( 'isotope' );
 	wp_register_script( 'isotope', "http" . ( $_SERVER['SERVER_PORT'] == 443 ? "s" : "" ) . "://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/1.5.25/jquery.isotope.min.js",  array(), false, true );
@@ -201,6 +206,82 @@ function gallery_taxonomies()
 			'hierarchical' => true
 		)
 	);
+}
+/*Register services post type*/
+add_action('init', 'gh_exam_services');
+function gh_exam_services()
+{
+    register_post_type('services', array(
+        'public' => true,
+        'supports' => array(
+            'title',
+            'thumbnail',
+            'editor',
+            'custom-fields'
+        ),
+        'labels' => array(
+            'name' => __('Services', 'gh_exam'),
+            'add_new' => __('Add new services', 'gh_exam'),
+            'all_items' => __('All services', 'gh_exam')
+        )
+    ));
+}
+add_action('init', 'services_taxonomies', 0);
+/*register services taxonomies*/
+function services_taxonomies()
+{
+    register_taxonomy(
+        'services_cats',
+        'services',
+        array(
+            'labels' => array(
+                'name' => 'Services categories',
+                'add_new_item' => 'Add New services',
+                'new_item_name' => "New services"
+            ),
+            'show_ui' => true,
+            'show_tagcloud' => false,
+            'hierarchical' => true
+        )
+    );
+}
+/*Register clients post type*/
+add_action('init', 'gh_exam_clients');
+function gh_exam_clients()
+{
+    register_post_type('clients', array(
+        'public' => true,
+        'supports' => array(
+            'title',
+            'thumbnail',
+            'editor',
+            'custom-fields'
+        ),
+        'labels' => array(
+            'name' => __('Clients', 'gh_exam'),
+            'add_new' => __('Add new clients', 'gh_exam'),
+            'all_items' => __('All clients', 'gh_exam')
+        )
+    ));
+}
+add_action('init', 'clients_taxonomies', 0);
+/*register clients taxonomies*/
+function clients_taxonomies()
+{
+    register_taxonomy(
+        'clients_cats',
+        'clients',
+        array(
+            'labels' => array(
+                'name' => 'Clients categories',
+                'add_new_item' => 'Add New clients',
+                'new_item_name' => "New clients"
+            ),
+            'show_ui' => true,
+            'show_tagcloud' => false,
+            'hierarchical' => true
+        )
+    );
 }
 /*____________________________________________________________________________________*/
 //Add social icons
@@ -333,7 +414,7 @@ function geekhub_theme_customizer($wp_customize)
 	));
 
 	$wp_customize->add_setting('geekhub_logo', array(
-		'default' => get_bloginfo('template_directory') . '/images/default-logo.png',
+		'default' => get_bloginfo('template_directory') . '/images/businessplus_logo.png',
 	));
 	$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'geekhub_logo', array(
 
@@ -348,7 +429,7 @@ add_action('customize_register', 'geekhub_theme_customizer');
 
 /*------------------------------------------------*/
 /* data customizer */
-function gh_exam_lields_customize_register( $wp_customize ){
+function gh_exam_fields_customize_register( $wp_customize ){
 
 $wp_customize->add_section('contact_data'
 	, array(
@@ -397,7 +478,282 @@ $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'address-ifra
 )));
 /*------------------------------------------------*/
 }
-add_action( 'customize_register', 'gh_exam_lields_customize_register' );
+add_action( 'customize_register', 'gh_exam_fields_customize_register' );
+
+
+function gh_exam_header_fields_customize_register( $wp_customize )
+{
+
+        $wp_customize->add_section('phone_data'
+            , array(
+                'title' => __('Phone data', 'gh_exam'),
+                'priority' => 119
+            ));
+        $wp_customize->add_setting('phone', array(
+            'default' => '+9978 8856 999',
+            'transport' => 'refresh'
+        ));
+        $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'mail-input', array(
+            'label' => __('Phone', 'gh_exam'),
+            'section' => 'phone_data',
+            'settings' => 'phone',
+            'priority' => 1
+        )));
+        /*------------------------------------------------*/
+    }
+    add_action( 'customize_register', 'gh_exam_header_fields_customize_register' );
+
+/*-------------------*/
+//About us
+add_action( 'customize_register', 'gh_exam_fields_customize_register' );
+
+
+function gh_exam_about_fields_customize_register( $wp_customize )
+{
+
+    $wp_customize->add_section('about_data'
+        , array(
+            'title' => __('About data', 'gh_exam'),
+            'priority' => 200
+        ));
+    $wp_customize->add_setting('title', array(
+        'default' => 'About title',
+        'transport' => 'refresh'
+    ));
+    $wp_customize->add_setting('title_sign', array(
+        'default' => 'About title sign',
+        'transport' => 'refresh'
+    ));
+    $wp_customize->add_setting('about_content', array(
+        'default' => 'About content',
+        'transport' => 'refresh'
+    ));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'title-input', array(
+        'label' => __('About title', 'gh_exam'),
+        'section' => 'about_data',
+        'settings' => 'title',
+        'priority' => 1
+    )));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'title-sign-input', array(
+        'label' => __('About title sign', 'gh_exam'),
+        'section' => 'about_data',
+        'settings' => 'title_sign',
+        'priority' => 2
+    )));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'about-contant-input', array(
+        'label' => __('About contant', 'gh_exam'),
+        'section' => 'about_data',
+        'settings' => 'about_content',
+        'priority' => 3
+    )));
+    /*------------------------------------------------*/
+}
+add_action( 'customize_register', 'gh_exam_about_fields_customize_register' );
+
+/*--------------------------*/
+//Services
+function gh_exam_services_fields_customize_register( $wp_customize )
+{
+
+    $wp_customize->add_section('services_data'
+        , array(
+            'title' => __('Services data', 'gh_exam'),
+            'priority' => 210
+        ));
+    $wp_customize->add_setting('services_title', array(
+        'default' => 'services title',
+        'transport' => 'refresh'
+    ));
+    $wp_customize->add_setting('services_title_sign', array(
+        'default' => 'Servces title sign',
+        'transport' => 'refresh'
+    ));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'services-title-input', array(
+        'label' => __('Services title', 'gh_exam'),
+        'section' => 'services_data',
+        'settings' => 'services_title',
+        'priority' => 1
+    )));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'services-title-sign-input', array(
+        'label' => __('Aboservices title sign', 'gh_exam'),
+        'section' => 'services_data',
+        'settings' => 'services_title_sign',
+        'priority' => 2
+    )));
+    /*------------------------------------------------*/
+}
+add_action( 'customize_register', 'gh_exam_services_fields_customize_register' );
+/*--------------------------*/
+//Klients
+function gh_exam_clients_fields_customize_register( $wp_customize )
+{
+
+    $wp_customize->add_section('clients_data'
+        , array(
+            'title' => __('Clients data', 'gh_exam'),
+            'priority' => 211
+        ));
+    $wp_customize->add_setting('clients_title', array(
+        'default' => 'clients title',
+        'transport' => 'refresh'
+    ));
+    $wp_customize->add_setting('clients_title_sign', array(
+        'default' => 'Clients title sign',
+        'transport' => 'refresh'
+    ));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'clients-title-input', array(
+        'label' => __('Clients title', 'gh_exam'),
+        'section' => 'clients_data',
+        'settings' => 'clients_title',
+        'priority' => 1
+    )));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'clients-title-sign-input', array(
+        'label' => __('Clients title sign', 'gh_exam'),
+        'section' => 'clients_data',
+        'settings' => 'clients_title_sign',
+        'priority' => 2
+    )));
+    /*------------------------------------------------*/
+}
+add_action( 'customize_register', 'gh_exam_clients_fields_customize_register' );
+/*--------------------------*/
+//Klients
+function gh_exam_news_fields_customize_register( $wp_customize )
+{
+
+    $wp_customize->add_section('news_data'
+        , array(
+            'title' => __('News data', 'gh_exam'),
+            'priority' => 211
+        ));
+    $wp_customize->add_setting('News_title', array(
+        'default' => 'news title',
+        'transport' => 'refresh'
+    ));
+    $wp_customize->add_setting('news_title_sign', array(
+        'default' => 'News title sign',
+        'transport' => 'refresh'
+    ));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'news-title-input', array(
+        'label' => __('News title', 'gh_exam'),
+        'section' => 'news_data',
+        'settings' => 'news_title',
+        'priority' => 1
+    )));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'news-title-sign-input', array(
+        'label' => __('News title sign', 'gh_exam'),
+        'section' => 'news_data',
+        'settings' => 'news_title_sign',
+        'priority' => 2
+    )));
+    /*------------------------------------------------*/
+}
+add_action( 'customize_register', 'gh_exam_news_fields_customize_register' );
+/*--------------------------*/
+//Partners
+function gh_exam_partners_fields_customize_register( $wp_customize )
+{
+
+    $wp_customize->add_section('partners_data'
+        , array(
+            'title' => __('Partners data', 'gh_exam'),
+            'priority' => 212
+        ));
+    $wp_customize->add_setting('partners_title', array(
+        'default' => 'partners title',
+        'transport' => 'refresh'
+    ));
+    $wp_customize->add_setting('partners_title_sign', array(
+        'default' => 'Partners title sign',
+        'transport' => 'refresh'
+    ));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'partners-title-input', array(
+        'label' => __('Partners title', 'gh_exam'),
+        'section' => 'partners_data',
+        'settings' => 'partners_title',
+        'priority' => 1
+    )));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'partners-title-sign-input', array(
+        'label' => __('Partners title sign', 'gh_exam'),
+        'section' => 'partners_data',
+        'settings' => 'partners_title_sign',
+        'priority' => 2
+    )));
+    /*------------------------------------------------*/
+}
+add_action( 'customize_register', 'gh_exam_partners_fields_customize_register' );
+/*__________________________________________________*/
+/*create slider post type*/
+add_action('init', 'create_slider_post_type');
+
+function create_slider_post_type()
+{
+	register_post_type('slider',
+		array(
+			'labels' => array(
+				'name' => __('Header Slider'),
+				'singular_name' => __('Header Slider')
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'slider'),
+			'supports' => array('title', 'editor', 'thumbnail'),
+		)
+	);
+}
+
+/*__________________________________________________*/
+/*create slider taxonomy*/
+add_action('init', 'create_my_slider_tax');
+
+function create_my_slider_tax()
+{
+	register_taxonomy(
+		'slider_type',
+		'slider',
+		array(
+			'label' => __('Slider type'),
+			'rewrite' => array('slug' => 'slider_type'),
+			'hierarchical' => true,
+		)
+	);
+}
+
+/*create partners post type*/
+add_action('init', 'create_partners_post_type');
+
+function create_partners_post_type()
+{
+    register_post_type('partners',
+        array(
+            'labels' => array(
+                'name' => __('Partners'),
+                'singular_name' => __('partners')
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'partners'),
+            'supports' => array('title', 'editor', 'thumbnail'),
+        )
+    );
+}
+
+/*__________________________________________________*/
+/*create partners taxonomy*/
+add_action('init', 'create_my_partners_tax');
+
+function create_my_partners_tax()
+{
+    register_taxonomy(
+        'news_type',
+        'news',
+        array(
+            'label' => __('Partners type'),
+            'rewrite' => array('slug' => 'partners_type'),
+            'hierarchical' => true,
+        )
+    );
+}
 /**
  * Implement the Custom Header feature.
  */
