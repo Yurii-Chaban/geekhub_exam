@@ -104,7 +104,7 @@ get_header(); ?>
                         <p class="clients-title-sign"><?php echo get_theme_mod('clients_title_sign', ''); ?></p>
                         <?php $query = new WP_Query(array('post_type' => 'clients', 'posts_per_page' => 3)); ?>
                         <?php if ($query->have_posts()) : ?>
-                            <ul class="clients-item slideshow slides">
+                            <ul class="clients-item">
                                 <?php while ($query->have_posts()) : $query->the_post(); ?>
                                     <li <?php post_class(); ?>>
                                         <div class="clients-services-content">
@@ -151,65 +151,68 @@ get_header(); ?>
                     <h2 class="news-title"><?php echo get_theme_mod('news_title', ''); ?></h2>
                     <p class="news-sign"><?php echo get_theme_mod('news_title_sign', ''); ?></p>
                     <div class="news-blog">
-                        <h2 class="main-post-title"><?php _e('Latest Blog Post', 'BlogName'); ?></h2>
-                        <?php if (have_posts()):
-                            while (have_posts()): the_post(); ?>
-                                <div class="content-post">
-                                    <a class="posted-date" href="<?php the_permalink(); ?>">
+                        <div class="post-meta-single">
+                            <h2 class="main-post-title"><?php _e('Latest Blog Post', 'BlogName'); ?></h2>
+                            <?php if (have_posts()):
+                            while (have_posts()):
+                            the_post(); ?>
+                            <div class="content-post">
+                                <a class="posted-date" href="<?php the_permalink(); ?>">
                             <span class="date">
                                 <span class="date-number"><?php the_time('j'); ?></span>
                                 <span class="date-month"><?php the_time('F'); ?></span>
                             </span>
-                                        <ul class="post-meta">
-                                            <li>
-                                                <span class="fa fa-comment"></span>
-                                                <a href="<?php the_permalink(); ?>">
-                                                    <?php global $post;
-                                                    echo $post->comment_count;
-                                                    echo " comments"; ?>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php the_permalink(); ?>">
-                                                    <span class="fa fa-folder"></span>
-                                                    <?php
-                                                    $category = get_the_category();
-                                                    echo " Category ";
-                                                    echo $category[0]->category_count;
-                                                    ?>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </a>
-                                </div>
-                                    <div class="post-description">
-                                        <div class="post-img"><?php the_post_thumbnail(); ?></div>
-                                        <h2 class="post-title">
-                                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                        </h2>
+                                </a>
+                                <ul class="post-meta">
+                                    <li>
+                                        <span class="fa fa-comment"></span>
+                                        <a href="<?php the_permalink(); ?>">
+                                            <?php global $post;
+                                            echo $post->comment_count;
+                                            echo " comments"; ?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php the_permalink(); ?>">
+                                            <span class="fa fa-folder"></span>
+                                            <?php
+                                            $category = get_the_category();
+                                            echo " Category ";
+                                            echo $category[0]->category_count;
+                                            ?>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        <div class="post-description">
+                            <div class="post-img"><?php the_post_thumbnail(); ?></div>
+                            <h2 class="post-title">
+                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                            </h2>
                                         <span
                                             class="blog-date"><?php the_time('jS, F, Y') ?></span>
-                                        <p><?php the_excerpt(); ?></p>
-                                </div>
-                            <?php endwhile;
-                            the_posts_pagination();
+                            <p class="post-content-single"><?php the_excerpt(); ?></p>
+                        </div>
+                        </div>
+                        <?php endwhile;
+                        the_posts_pagination();
 
                         else: ?>
                             <p><?php _e('No content found', 'BlogName'); ?></p>
                         <?php endif; ?>
+                        <a class="news-viev-more" href="<?php the_permalink(); ?>">
+                            <?php _e('Viev more', 'gh_exam'); ?>
+                        </a>
                     </div>
-                    <a class="read-more" href="<?php the_permalink(); ?>">
-                        <?php _e('Viev more', 'gh_exam'); ?>
-                    </a>
                 </div>
             </section>
             <section class="partners">
                 <div class="wrapper">
                     <h2 class="partners-title"><?php echo get_theme_mod('partners_title', ''); ?></h2>
-                    <p class="partners-title"><?php echo get_theme_mod('partners_title_sign', ''); ?></p>
+                    <p class="partners-title-sign"><?php echo get_theme_mod('partners_title_sign', ''); ?></p>
                     <?php $query = new WP_Query(array('post_type' => 'partners', 'posts_per_page' => 5)); ?>
                     <?php if ($query->have_posts()) : ?>
-                        <ul class="services-item">
+                        <ul class="partners-item">
                             <?php while ($query->have_posts()) : $query->the_post(); ?>
                                 <li <?php post_class(); ?>>
                                     <?php if (has_post_thumbnail()) {

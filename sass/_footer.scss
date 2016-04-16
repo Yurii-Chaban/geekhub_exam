@@ -1,0 +1,108 @@
+.site-footer {
+  width: 100%;
+  display: flex;
+  background-color: #2a2b2c;
+
+  .copyrigh-block {
+    width: 170px;
+    margin-right: 200px;
+    float: left;
+    .copyright {
+      color: #8e8e8e;
+      font-size: 13px;
+      line-height: 24px;
+      text-transform: uppercase;
+      font-family: OpenSans;
+      font-weight: 300;
+      .design-sign {
+        display: none;
+      }
+      a {
+        color: #8e8e8e;
+        font-size: 13px;
+        line-height: 24px;
+        text-transform: uppercase;
+        font-family: OpenSans;
+        font-weight: 300;
+        text-decoration :none;
+      }
+    }
+  }
+
+  .footer-navigation {
+    float: left;
+    width: 165px;
+    margin-right: 120px;
+
+    #footer-menu {
+      margin-left: 0;
+      li {
+
+        width: 100%;
+        line-height: 19px;
+        padding-bottom: 5px;
+        text-transform: uppercase;
+        color: #7b7b7c;
+        font-family: OpenSans;
+        font-size: 13px;
+        font-weight: 600;
+        border-bottom: 1px solid #373839;
+
+        a {
+          line-height: 39px;
+          text-transform: uppercase;
+          color: #ffaf36;
+          font-family: FontAwesome;
+          font-size: 12px;
+          font-weight: 400;
+          color: #7b7b7c;
+          font-family: OpenSans;
+          font-size: 13px;
+          font-weight: 600;
+          text-decoration: none;
+        }
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+
+    .footer-nav-title {
+      color: white;
+      font-family: Raleway;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 24px;
+      text-transform: uppercase;
+    }
+  }
+  .feedback-form {
+    float: left;
+    width: 460px;
+
+    .contact-form-title {
+      color: white;
+      font-family: Raleway;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 24px;
+      text-transform: uppercase;
+    }
+    .contact {
+      .contact-form {
+        h2 {
+          display: none;
+        }
+        .form-group {
+          #name, #email {
+            width: 223px;
+            height: 47px;
+            background-color: #2a2b2c;
+            border: 1px solid #373839;
+          }
+        }
+      }
+    }
+  }
+}

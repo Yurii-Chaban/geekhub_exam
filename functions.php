@@ -686,6 +686,48 @@ function gh_exam_partners_fields_customize_register( $wp_customize )
     /*------------------------------------------------*/
 }
 add_action( 'customize_register', 'gh_exam_partners_fields_customize_register' );
+//Footernav
+function gh_exam_footer_nav_fields_customize_register( $wp_customize )
+{
+
+	$wp_customize->add_section('footer_data'
+		, array(
+			'title' => __('Footer data', 'gh_exam'),
+			'priority' => 214		));
+	$wp_customize->add_setting('footer_title', array(
+		'default' => 'Footer title',
+		'transport' => 'refresh'
+	));
+	$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'footer-nav-title-input', array(
+		'label' => __('Footer nav title', 'gh_exam'),
+		'section' => 'footer_data',
+		'settings' => 'footer_title',
+		'priority' => 1
+	)));
+	/*------------------------------------------------*/
+}
+add_action( 'customize_register', 'gh_exam_footer_nav_fields_customize_register' );
+//Contact-title
+function gh_exam_contact_form_fields_customize_register( $wp_customize )
+{
+
+	$wp_customize->add_section('contact_form_data'
+		, array(
+			'title' => __('Contact form data', 'gh_exam'),
+			'priority' => 214		));
+	$wp_customize->add_setting('contact_form_title', array(
+		'default' => 'Contact form title',
+		'transport' => 'refresh'
+	));
+	$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'contact-form-title-input', array(
+		'label' => __('Contact form title', 'gh_exam'),
+		'section' => 'contact_form_data',
+		'settings' => 'contact_form_title',
+		'priority' => 1
+	)));
+	/*------------------------------------------------*/
+}
+add_action( 'customize_register', 'gh_exam_contact_form_fields_customize_register' );
 //Blog
 function gh_exam_blog_fields_customize_register( $wp_customize )
 {
