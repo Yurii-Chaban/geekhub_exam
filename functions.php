@@ -137,7 +137,7 @@ function gh_exam_scripts() {
 
 	wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 
-	wp_enqueue_style('flexslider', get_template_directory_uri() . '/stylesheets/flexslider.css');;
+	wp_enqueue_style('flexslider', get_template_directory_uri() . '/stylesheets/flexslider.css');
 
 	wp_enqueue_style('rex_style', get_template_directory_uri() . '/stylesheets/screen.css');
 
@@ -630,7 +630,7 @@ function gh_exam_news_fields_customize_register( $wp_customize )
             'title' => __('News data', 'gh_exam'),
             'priority' => 211
         ));
-    $wp_customize->add_setting('News_title', array(
+    $wp_customize->add_setting('news_title', array(
         'default' => 'news title',
         'transport' => 'refresh'
     ));
@@ -686,6 +686,28 @@ function gh_exam_partners_fields_customize_register( $wp_customize )
     /*------------------------------------------------*/
 }
 add_action( 'customize_register', 'gh_exam_partners_fields_customize_register' );
+//Blog
+function gh_exam_blog_fields_customize_register( $wp_customize )
+{
+
+    $wp_customize->add_section('blog_data'
+        , array(
+            'title' => __('Blog data', 'gh_exam'),
+            'priority' => 231
+        ));
+    $wp_customize->add_setting('blog_title_sign', array(
+        'default' => 'blog title sign',
+        'transport' => 'refresh'
+    ));
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'blog-title-sign-input', array(
+        'label' => __('Blog title sign', 'gh_exam'),
+        'section' => 'blog_data',
+        'settings' => 'blog_title_sign',
+        'priority' => 1
+    )));
+    /*------------------------------------------------*/
+}
+add_action( 'customize_register', 'gh_exam_blog_fields_customize_register' );
 /*__________________________________________________*/
 /*create slider post type*/
 add_action('init', 'create_slider_post_type');
@@ -810,6 +832,33 @@ function formCustom() {
     return $rty;
 }
 add_shortcode( 'formCustom', 'formCustom' );
+
+/*__________________________________________________________*/
+/*create Blog images in theme customize*/
+/*_____________________________________*/
+
+function gootheme_blog_theme_customizer($wp_customize)
+{
+
+    $wp_customize->add_section('gootheme_blog_section', array(
+        'title' => __('Blog background images', 'gootheme_blog'),
+        'priority' => 30,
+        'description' => 'Upload a images for this theme',
+    ));
+
+    $wp_customize->add_setting('gootheme_blog', array(
+        'default' => get_bloginfo('template_directory') . '/images/2-layers.png',
+    ));
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'gootheme_blog_bg', array(
+
+        'label' => __('Currentblog background images', 'gootheme_blog'),
+        'section' => 'gootheme_blog_section',
+        'settings' => 'gootheme_blog',
+    )));
+
+}
+
+add_action('customize_register', 'gootheme_blog_theme_customizer');
 /**
  * Implement the Custom Header feature.
  */

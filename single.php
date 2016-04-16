@@ -11,11 +11,18 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
+			<?php if (get_theme_mod('gootheme_blog')) :
+				echo '<img src="' . esc_url(get_theme_mod('gootheme_blog')) . '">';
+			else:
+				echo get_bloginfo('name') . '<span>' . get_bloginfo('description') . '</span>';
+
+			endif; ?>
 
 		<?php
 		while ( have_posts() ) : the_post();
 
 			get_template_part( 'template-parts/content', get_post_format() );
+
 
 			the_post_navigation();
 

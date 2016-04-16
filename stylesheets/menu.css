@@ -1,0 +1,147 @@
+nav {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    background-color: #fff;
+}
+nav:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+nav .menu-primary-container .menu {
+    float: right;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+}
+
+nav .menu-primary-container .menu li {
+    float: left;
+    width: 100%;
+    margin: 0px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+nav a {
+    display: block;
+    padding: 0 20px;
+    color: #FFF;
+    font-size: 20px;
+    line-height: 30px;
+    text-decoration: none;
+}
+
+nav .menu-primary-container .menu li ul li:hover { background: #000000; }
+
+nav a:hover { background-color: #000000; }
+
+nav .menu-primary-container .menu ul {
+    display: none;
+    position: absolute;
+    top: 60px;
+}
+
+nav .menu-primary-container .menu li:hover > ul { display: inherit; }
+
+nav .menu-primary-container .menu ul li {
+    width: 170px;
+    float: none;
+    display: list-item;
+    position: relative;
+}
+
+nav .menu-primary-container .menu ul ul li {
+    position: relative;
+    left: 170px;
+}
+
+@media all and (max-width : 768px) {
+
+    nav { margin: 0; }
+
+    .toggle + a,
+    .menu { display: none; }
+
+    .toggle {
+        display: block;
+        background-color: #f9f9f9;
+        padding: 0;
+        text-align: center;
+        color: #363636;
+        font-size: 20px;
+        line-height: 60px;
+        text-decoration: none;
+        border: none;
+    }
+
+    .fa {
+        margin-right: 10px;
+    }
+
+    .toggle:hover { background-color: #f9f9f9; }
+
+    [id^=drop]:checked + .menu-primary-container .menu { display: block; }
+    [id^=drop] {
+        display: none;
+    }
+    nav .menu-primary-container .menu li {
+        display: block;
+        width: 100%;
+    }
+
+    nav .menu-primary-container .menu ul .toggle,
+    nav .menu-primary-container .menu ul a { padding: 0 40px; }
+
+    nav .menu-primary-container .menu ul ul a { padding: 0 80px; }
+
+    nav a:hover,
+    nav .menu-primary-container .menu ul ul a { background-color: #000000; }
+
+    nav .menu-primary-container .menu li ul li .toggle,
+    nav .menu-primary-container .menu ul a { background-color: #212121; }
+
+    nav .menu-primary-container .menu ul {
+        float: none;
+        position: static;
+        color: #ffffff;
+    }
+
+    nav .menu-primary-container .menu-primary-container .menu ul li:hover > ul,
+    nav ul li:hover > ul { display: none; }
+
+    nav .menu-primary-container .menu ul li {
+        display: block;
+        width: 100%;
+    }
+
+    nav .menu-primary-container .menu ul ul li { position: static;
+
+    }
+}
+@media all and (min-width: 769px) {
+    [id^=drop],
+    .toggle {
+        display: none;
+    }
+}
+@media all and (min-width: 1024px) {
+    [id^=drop],
+    .toggle {
+        display: none;
+    }
+}
+
+
+
+@media all and (max-width : 330px) {
+
+    nav .menu-primary-container .menu li {
+        display: block;
+        width: 100%;
+    }
+
+}

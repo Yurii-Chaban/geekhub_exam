@@ -551,10 +551,10 @@ a:active {
 ## Menus
 --------------------------------------------------------------*/
 .main-navigation {
-	clear: both;
 	display: block;
-	float: left;
-	width: 100%;
+	float: right;
+	width: 60%;
+	margin: 20px 29px 0 0;
 }
 
 .main-navigation ul {
@@ -567,11 +567,22 @@ a:active {
 .main-navigation li {
 	float: left;
 	position: relative;
+    margin: 0 10px;
 }
 
 .main-navigation a {
 	display: block;
 	text-decoration: none;
+    font-family: OpenSans;
+    font-size: 14px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 600;
+}
+.main-navigation a:hover {
+    color: #ffaf36;
+    font-weight: 700;
 }
 
 .main-navigation ul ul {
@@ -636,6 +647,7 @@ a:active {
 	}
 	.main-navigation ul {
 		display: block;
+        float: right;
 	}
 }
 

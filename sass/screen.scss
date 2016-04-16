@@ -2,24 +2,24 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-
 @import "grids";
 @import "compass/reset";
+@import "_header";
 
 @mixin transition {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-.logo-wrapper {
-  .logo {
-    display: block;
-    margin: 20px auto;
-  }
+
+section {
+  padding: 100px 0;
 }
+
 #page {
-  @include container();
-  padding: 0 15px;
+  width: 100%;
+  margin: 0 auto;
 }
+
 .copyright {
   color: #fff;
   font-family: 'Arial', sans-serif;
@@ -29,6 +29,7 @@
     color: #2df555;
   }
 }
+
 .social-icons {
   display: inline;
   float: left;
@@ -56,45 +57,300 @@
       -o-transition: all 0.5s;
       transition: all 0.5s;
     }
-    .facebook:hover{
+    .facebook:hover {
       background-color: #3b5998;
       border-color: #3b5998;
       color: #fff;
     }
     .twitter {
-      &:hover{
+      &:hover {
         color: #fff;
         background-color: #00aced;
         border-color: #00aced;
       }
     }
     .google-plus {
-      &:hover{
+      &:hover {
         color: #fff;
         background-color: #dd4b39;
         border-color: #dd4b39;
       }
     }
     .youtube {
-      &:hover{
+      &:hover {
         color: #fff;
         background-color: #bb0000;
         border-color: #bb0000;
       }
     }
     .linkedin {
-      &:hover{
+      &:hover {
         color: #fff;
         background-color: #007bb5;
         border-color: #007bb5;
       }
     }
     .dribbble {
-      &:hover{
+      &:hover {
         color: #fff;
         background-color: #ea4c89;
         border-color: #ea4c89;
       }
     }
+  }
+}
+
+.slider-wrapper {
+  padding: 0;
+}
+
+.slideshow {
+  .slideshow-item {
+    .slideshow-rollover {
+      position: absolute;
+      bottom: 15%;
+      width: 520px;
+      margin-left: 20px;
+      padding: 20px;
+      .feature-title {
+        color: white;
+        font-family: Raleway;
+        font-size: 60px;
+        font-weight: 700;
+        line-height: 50px;
+        text-transform: uppercase;
+
+        .title-sign {
+          display: block;
+          color: white;
+          font-family: Raleway;
+          font-size: 16px;
+          font-weight: 600;
+          line-height: 24px;
+          text-transform: uppercase;
+        }
+      }
+      .feature-content {
+        margin-bottom: 40px;
+        color: white;
+        font-family: Lora;
+        font-size: 15px;
+        font-style: italic;
+        line-height: 30px;
+      }
+      .read-more-slider {
+        width: 151px;
+        height: 51px;
+        padding: 20px 33px;
+        background-color: #ffaf36;
+        color: #1c1c1c;
+        font-family: Raleway;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 24px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.about-us {
+  .left-block {
+    float: left;
+    .about-title {
+      color: #1c1c1c;
+      font-family: Raleway;
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 24px;
+      text-transform: uppercase;
+    }
+    .title-sign {
+      color: #1c1c1c;
+      font-family: Lora;
+      font-size: 16px;
+      font-style: italic;
+      line-height: 30px;
+    }
+  }
+  .right-block {
+    float: right;
+    max-width: 645px;
+    width: 100%;
+    .about-contant {
+      color: #585858;
+      margin-bottom: 31px;
+      font-family: OpenSans;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 28px;
+    }
+    .about-read-more {
+      clear: both;
+      float: left;
+      width: 151px;
+      height: 51px;
+      border: 2px solid #ffaf36;
+      color: #ffaf36;
+      font-family: Raleway;
+      font-size: 13px;
+      padding: 20px 34px;
+      line-height: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.services {
+  background-color: #eaeff3;
+
+  .services-title {
+    color: #1c1c1c;
+    font-family: Raleway;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 24px;
+    text-transform: uppercase;
+  }
+  .services-description {
+    color: #1c1c1c;
+    font-family: Lora;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 30px;
+  }
+
+  .services-item {
+    @include span(12 of 12);
+
+    li {
+      display: inline-block;
+      max-width: 500px;
+      width: 100%;
+      margin: 10px;
+      .post-img {
+        float: left;
+        margin-right: 20px;
+      }
+      .rollover {
+        float: right;
+        width: 80%;
+        .item-title {
+          margin-bottom: 20px;
+          color: #1c1c1c;
+          font-family: Raleway;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 24px;
+          text-transform: uppercase;
+        }
+        .services-contatn {
+          color: #585858;
+          font-family: OpenSans;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 28px;
+        }
+      }
+    }
+  }
+  .services-viev-more {
+    clear: both;
+    float: left;
+    width: 151px;
+    height: 51px;
+    border: 2px solid #ffaf36;
+    color: #ffaf36;
+    font-family: Raleway;
+    font-size: 13px;
+    padding: 20px 34px;
+    line-height: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+.clients {
+  .clients-title {
+    color: #1c1c1c;
+    font-family: Raleway;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 24px;
+    text-transform: uppercase;
+  }
+  .clients-description {
+    color: #1c1c1c;
+    font-family: Lora;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 30px;
+  }
+  .clients-item {
+    li {
+      max-width: 318px;
+      width: 100%;
+      color: #585858;
+      font-family: OpenSans;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 28px;
+
+      .clients-services-content {
+        color: #585858;
+        font-family: OpenSans;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 28px;
+      }
+      .rollover {
+        .clients-photo {
+          float: left;
+          width: 68px;
+          height: 68px;
+          margin-right: 20px;
+          display: block;
+          overflow: hidden;
+          border-radius: 100%;
+        }
+        .clients-item-title {
+          color: #1c1c1c;
+          font-family: Raleway;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 24px;
+          text-transform: uppercase;
+        }
+        .clients-category {
+          color: #585858;
+          font-family: OpenSans;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 28px;
+        }
+      }
+    }
+  }
+}
+.news {
+  .news-title {
+    color: #1c1c1c;
+    font-family: Raleway;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 24px;
+    text-transform: uppercase;
+  }
+  .news-sign {
+    color: #1c1c1c;
+    font-family: Lora;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 30px;
+  }
+  .content-post {
+    @include span(2 of 12);
   }
 }

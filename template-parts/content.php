@@ -17,8 +17,9 @@
 			} else {
 				the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 			}
-
-		if ( 'post' === get_post_type() ) : ?>
+		?>
+		<p class="blog-sign"><?php echo get_theme_mod('blog_title_sign', ''); ?></p>
+		<?php if ( 'post' === get_post_type() ) : ?>
 		<div class="entry-meta">
 			<?php gh_exam_posted_on(); ?>
 		</div><!-- .entry-meta -->
