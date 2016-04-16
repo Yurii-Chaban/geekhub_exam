@@ -216,7 +216,7 @@ function my_add_social_sites_customizer($wp_customize)
 {
 
 	$wp_customize->add_section('my_social_settings', array(
-		'title' => __('Social Media Icons', 'text-domain'),
+		'title' => __('Social Media Icons', 'gh_exam'),
 		'priority' => 35,
 	));
 
@@ -232,7 +232,7 @@ function my_add_social_sites_customizer($wp_customize)
 		));
 
 		$wp_customize->add_control($social_site, array(
-			'label' => __("$social_site url:", 'text-domain'),
+			'label' => __("$social_site url:", 'gh_exam'),
 			'section' => 'my_social_settings',
 			'type' => 'text',
 			'priority' => $priority,
@@ -259,7 +259,7 @@ function my_social_media_icons()
 				<li>
 					<a class="email" target="_blank"
 					   href="mailto:<?php echo antispambot(is_email(get_theme_mod($active_site))); ?>">
-						<span class="fa fa-envelope" title="<?php _e('email icon', 'text-domain'); ?>"></span>
+						<span class="fa fa-envelope" title="<?php _e('email icon', 'gh_exam'); ?>"></span>
 					</a>
 				</li>
 			<?php } else { ?>
@@ -267,7 +267,7 @@ function my_social_media_icons()
 					<a class="<?php echo $active_site; ?>" target="_blank"
 					   href="<?php echo esc_url(get_theme_mod($active_site)); ?>">
                         <span class="<?php echo esc_attr($class); ?>"
-							  title="<?php printf(__('%s icon', 'text-domain'), $active_site); ?>"></span>
+							  title="<?php printf(__('%s icon', 'gh_exam'), $active_site); ?>"></span>
 					</a>
 				</li>
 				<?php
@@ -333,7 +333,7 @@ function geekhub_theme_customizer($wp_customize)
 	));
 
 	$wp_customize->add_setting('geekhub_logo', array(
-		'default' => get_bloginfo('template_directory') . '/images/default-logo1.png',
+		'default' => get_bloginfo('template_directory') . '/images/default-logo.png',
 	));
 	$wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'geekhub_logo', array(
 
@@ -346,6 +346,58 @@ function geekhub_theme_customizer($wp_customize)
 
 add_action('customize_register', 'geekhub_theme_customizer');
 
+/*------------------------------------------------*/
+/* data customizer */
+function gh_exam_lields_customize_register( $wp_customize ){
+
+$wp_customize->add_section('contact_data'
+	, array(
+		'title' => __('Contact data', 'gh_exam'),
+		'priority' => 120
+	));
+$wp_customize->add_setting('mail', array(
+	'default' => 'mail@host.com',
+	'transport' => 'refresh'
+));
+$wp_customize->add_setting('address', array(
+	'default' => 'Street City 123',
+	'transport' => 'refresh'
+));
+$wp_customize->add_setting('name', array(
+	'default' => 'LExa Lexa',
+	'transport' => 'refresh'
+));
+$wp_customize->add_setting('address-iframe', array(
+	'default' => '<iframe src="https://www.google.com/maps/embed?pb=!1m17!1m8!1m3!1d6303.67022361714!2d144.955652!3d-37.817331!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d-37.8173306!2d144.9556518!5e0!3m2!1sen!2sbd!4v1442411159706" width="100%" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>',
+	'transport' => 'refresh'
+));
+$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'mail-input', array(
+	'label' => __('Email', 'gh_exam'),
+	'section' => 'contact_data',
+	'settings' => 'mail',
+	'priority' => 1
+)));
+$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'name-input', array(
+	'label' => __('Name', 'gh_exam'),
+	'section' => 'contact_data',
+	'settings' => 'name',
+	'priority' => 1
+)));
+$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'address-input', array(
+	'label' => __('Address', 'gh_exam'),
+	'section' => 'contact_data',
+	'settings' => 'address',
+	'priority' => 1
+)));
+$wp_customize->add_control(new WP_Customize_Control($wp_customize, 'address-iframe', array(
+	'label' => __('Google maps iframe', 'gh_exam'),
+	'section' => 'contact_data',
+	'settings' => 'address-iframe',
+	'priority' => 1
+)));
+/*------------------------------------------------*/
+}
+add_action( 'customize_register', 'gh_exam_lields_customize_register' );
 /**
  * Implement the Custom Header feature.
  */
