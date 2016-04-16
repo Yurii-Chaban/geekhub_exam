@@ -150,6 +150,8 @@ function gh_exam_scripts() {
 
 	wp_enqueue_script( 'gh_exam-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
+	wp_enqueue_script( 'gh_exam-scriptform', get_template_directory_uri() . '/js/scriptform.js', array(), '20151215', true );
+
 	wp_register_script('isotope', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/1.5.25/jquery.isotope.min.js", array(), false, true);
 
 

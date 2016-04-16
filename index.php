@@ -14,7 +14,7 @@
 
 get_header(); ?>
 
-    <div id="primary" class="content-area">
+    <div id="home primary" class="content-area">
         <main id="main" class="site-main" role="main">
             <section class="slider-wrapper">
                 <div class="flexslider">
@@ -49,7 +49,7 @@ get_header(); ?>
                     </ul>
                 </div>
             </section>
-            <section class="about-us">
+            <section id="about" class="about-us">
                 <div class="wrapper">
                     <div class="left-block">
                         <h2 class="about-title"><?php echo get_theme_mod('title', ''); ?></h2>
@@ -63,7 +63,7 @@ get_header(); ?>
                     </div>
                 </div>
             </section>
-            <section class="services">
+            <section id="services" class="services">
                 <div class="wrapper">
                     <h2 class="services-title"><?php echo get_theme_mod('services_title', ''); ?></h2>
                     <p class="services-sign"><?php echo get_theme_mod('services_title_sign', ''); ?></p>
@@ -97,7 +97,7 @@ get_header(); ?>
                     </a>
                 </div>
             </section>
-            <section class="clients slider-wrapper">
+            <section id="tesimonial" class="clients slider-wrapper">
                 <div class="wrapper">
                     <div class="flexslider">
                         <h2 class="clients-title"><?php echo get_theme_mod('clients_title', ''); ?></h2>
@@ -146,13 +146,12 @@ get_header(); ?>
                     </div>
                 </div>
             </section>
-            <section class="news">
+            <section id="blog" class="news">
                 <div class="wrapper">
                     <h2 class="news-title"><?php echo get_theme_mod('news_title', ''); ?></h2>
                     <p class="news-sign"><?php echo get_theme_mod('news_title_sign', ''); ?></p>
                     <div class="news-blog">
                         <div class="post-meta-single">
-                            <h2 class="main-post-title"><?php _e('Latest Blog Post', 'BlogName'); ?></h2>
                             <?php if (have_posts()):
                             while (have_posts()):
                             the_post(); ?>
@@ -184,15 +183,15 @@ get_header(); ?>
                                     </li>
                                 </ul>
                             </div>
-                        <div class="post-description">
-                            <div class="post-img"><?php the_post_thumbnail(); ?></div>
-                            <h2 class="post-title">
-                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h2>
+                            <div class="post-description">
+                                <div class="post-img"><?php the_post_thumbnail(); ?></div>
+                                <h2 class="post-title">
+                                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                </h2>
                                         <span
                                             class="blog-date"><?php the_time('jS, F, Y') ?></span>
-                            <p class="post-content-single"><?php the_excerpt(); ?></p>
-                        </div>
+                                <p class="post-content-single"><?php the_excerpt(); ?></p>
+                            </div>
                         </div>
                         <?php endwhile;
                         the_posts_pagination();
@@ -206,7 +205,7 @@ get_header(); ?>
                     </div>
                 </div>
             </section>
-            <section class="partners">
+            <section id="partners" class="partners">
                 <div class="wrapper">
                     <h2 class="partners-title"><?php echo get_theme_mod('partners_title', ''); ?></h2>
                     <p class="partners-title-sign"><?php echo get_theme_mod('partners_title_sign', ''); ?></p>

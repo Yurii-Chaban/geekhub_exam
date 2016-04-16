@@ -13,7 +13,7 @@
 
 	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
+	<footer id="contact-us colophon" class="site-footer" role="contentinfo">
 		<div class="wrapper">
 			<div class="copyrigh-block">
 				<h1 class="logo-wrapper">
