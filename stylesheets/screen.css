@@ -803,6 +803,7 @@ section {
 .news .news-viev-more {
   width: 151px;
   height: 51px;
+  margin-left: 115px;
   border: 2px solid #ffaf36;
   color: #ffaf36;
   font-family: Raleway;
@@ -814,7 +815,7 @@ section {
   text-transform: uppercase;
 }
 
-/* line 456, ../sass/screen.scss */
+/* line 457, ../sass/screen.scss */
 .partners .partners-title {
   color: #1c1c1c;
   font-family: Raleway;
@@ -823,7 +824,7 @@ section {
   line-height: 24px;
   text-transform: uppercase;
 }
-/* line 464, ../sass/screen.scss */
+/* line 465, ../sass/screen.scss */
 .partners .partners-sign {
   color: #1c1c1c;
   font-family: Lora;
@@ -831,12 +832,12 @@ section {
   font-style: italic;
   line-height: 30px;
 }
-/* line 471, ../sass/screen.scss */
+/* line 472, ../sass/screen.scss */
 .partners .partners-item {
   display: flex;
   width: 100%;
 }
-/* line 474, ../sass/screen.scss */
+/* line 475, ../sass/screen.scss */
 .partners .partners-item li {
   display: inline-block;
   width: 15%;
@@ -845,7 +846,7 @@ section {
   border: 1px solid #eaeff3;
   text-align: center;
 }
-/* line 481, ../sass/screen.scss */
+/* line 482, ../sass/screen.scss */
 .partners .partners-item li img {
   text-align: center;
   line-height: 90px;
