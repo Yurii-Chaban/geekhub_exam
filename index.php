@@ -234,19 +234,6 @@ get_header(); ?>
                         href="mailto:<?php echo get_theme_mod('mail', ''); ?>"><?php echo get_theme_mod('mail', ''); ?></a>
                 </li>
             </ul>
-            <?php echo get_theme_mod('address-iframe', ''); ?>
-            <!--Social media icon-->
-            <?php my_social_media_icons(); ?>
-            <!--Copyright-->
-            <div class="copyright">
-                <?php
-                if (get_theme_mod('hide_copyright') == '') { ?>
-                    <span class="design-sign"><?php echo __('Designed by ', 'text_domain'); ?></span>
-                    <?php echo get_theme_mod('copyright_year' . '') . ' '; ?>
-                    <a href="<?php the_permalink(); ?>"><?php echo get_theme_mod('copyright_name', '') . ' '; ?></a>
-                <?php }
-                ?>
-            </div>
         </main><!-- #main -->
     </div><!-- #primary -->
 

@@ -119,6 +119,10 @@ function my_theme_setup()
 	register_nav_menus(array(
 		'primary' => __('Primary Menu'),
 	));
+
+    register_nav_menus(array(
+        'footer' => __('Footer Menu'),
+    ));
 	// Add feature image support
 	add_theme_support('post-thumbnails');
 }
@@ -287,7 +291,7 @@ function clients_taxonomies()
 //Add social icons
 function my_customizer_social_media_array()
 {
-	$social_sites = array('facebook', 'twitter' , 'google-plus', 'youtube', 'linkedin', 'pinterest', 'dribbble', 'flickr', 'tumblr', 'rss', 'instagram', 'email');
+	$social_sites = array('facebook', 'google-plus', 'twitter' , 'youtube', 'linkedin', 'pinterest', 'dribbble', 'flickr', 'tumblr', 'rss', 'instagram', 'email');
 	return $social_sites;
 }
 
@@ -754,6 +758,58 @@ function create_my_partners_tax()
         )
     );
 }
+/*---------------------------------*/
+/*------Feedback form------*/
+/*---------------------------------*/
+function custom_form_action_callback() {
+    global $wpdb;
+    global $mail;
+    $nonce=$_POST['nonce'];
+    $rtr='';
+    if (!wp_verify_nonce( $nonce, 'custom_form_action-nonce'))wp_die('{"error":"Error. Spam"}');
+    $message="";
+    $to="shuterrush@gmail.com";
+    $headers = "Content-type: text/html; charset=utf-8 \r\n";
+    $headers.= "From: ".$_SERVER['SERVER_NAME']." \r\n";
+    $subject="Message from site ".$_SERVER['SERVER_NAME'];
+    do_action('plugins_loaded');
+    if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['mess']) ){
+        $message.="Name: ".$_POST['name'];
+        $message.="<br/>E-mail: ".$_POST['email'];
+        $message.="<br/>Message:<br/>".nl2br($_POST['mess']);
+        if(mail($to, $subject, $message, $headers)){
+            $rtr='{"work":"Message send!","error":""}';
+        }else{
+            $rtr='{"error":"Server error."}';
+        }
+    }else{
+        $rtr='{"error":"All fields are required!"}';
+    }
+    echo $rtr;
+    exit;
+}
+add_action('wp_ajax_nopriv_custom_form_send_action', 'custom_form_action_callback');
+add_action('wp_ajax_custom_form_send_action', 'custom_form_action_callback');
+function custom_form_stylesheet(){
+    wp_enqueue_style("custom_form_style_templ",get_bloginfo('stylesheet_directory')."/style.css","0.1.2",true);
+    wp_enqueue_script("custom_form_script_temp",get_bloginfo('stylesheet_directory')."/js//scriptform.js");
+    wp_localize_script("custom_form_script_temp", "custom_form_Ajax", array( 'ajaxurl' => admin_url( 'admin-ajax.php' ), 'nonce' => wp_create_nonce('custom_form_action-nonce') ) );
+}
+add_action( 'wp_enqueue_scripts', 'custom_form_stylesheet' );
+function formCustom() {
+    $rty.='<div class="contact">';
+    $rty.='<form class="contact-form">';
+    $rty.='<h2>Send a message</h2>';
+    $rty.='<div class="form-group"><input id="name" class="form-control" type="text" placeholder="Name"/></div>';
+    $rty.='<div class="form-group"><input id="email" type="text" class="form-control" placeholder="Email"/></div>';
+    $rty.='<div class="form-group"><textarea id="mess" class="form-control"></textarea></div>';
+    $rty.='<button type="submit"  data-text="SUBMIT" class="button button-default" onclick="custom_form_ajax_send(\'#name\',\'#email\',\'#mess\'); return false;"><span>SUBMIT NOV</span></button>';
+    $rty.='</form>';
+    $rty.='<div id="response"></div>';
+    $rty.='</div>';
+    return $rty;
+}
+add_shortcode( 'formCustom', 'formCustom' );
 /**
  * Implement the Custom Header feature.
  */
