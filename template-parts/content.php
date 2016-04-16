@@ -19,10 +19,17 @@
 			}
 		?>
 		<p class="blog-sign"><?php echo get_theme_mod('blog_title_sign', ''); ?></p>
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php gh_exam_posted_on(); ?>
-		</div><!-- .entry-meta -->
+		<div class="author-image"><?php $author_email = get_the_author_email(); echo get_avatar($author_email,'75');?></div>
+		<div class="block-meta">
+			<?php if ( 'post' === get_post_type() ) : ?>
+			<h2 class="single-post-title">
+				<?php the_title(); ?>
+			</h2>
+			<div class="entry-meta">
+				<?php gh_exam_posted_on(); ?>
+			</div><!-- .entry-meta -->
+			<div class="single-post-img"><?php the_post_thumbnail(); ?></div>
+		</div>
 		<?php
 		endif; ?>
 	</header><!-- .entry-header -->

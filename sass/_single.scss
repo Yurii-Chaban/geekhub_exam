@@ -1,0 +1,66 @@
+.entry-header {
+  .entry-title {
+    color: #1c1c1c;
+    font-family: Raleway;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 24px;
+    text-transform: uppercase;
+
+    .blog-sign {
+      color: #1c1c1c;
+      font-family: Lora;
+      font-size: 16px;
+      font-style: italic;
+      line-height: 30px;
+    }
+  }
+  .single-post-title {
+    color: #1c1c1c;
+    font-family: Raleway;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    text-transform: uppercase;
+  }
+  .author-image {
+    float: left;
+    width: 100px;
+    margin-bottom: 300px;
+  }
+  .block-meta {
+    overflow: hidden;
+
+    .single-post-img {
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+  .entry-meta {
+    color: #757575;
+    font-family: ProximaNova;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 24px;
+    text-transform: uppercase;
+    a {
+      color: #757575;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .entry-content {
+    margin-left: 100px;
+    overflow: hidden;
+    color: #585858;
+    font-family: OpenSans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 28px;
+  }
+}

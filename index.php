@@ -155,41 +155,44 @@ get_header(); ?>
                             <?php if (have_posts()):
                             while (have_posts()):
                             the_post(); ?>
-                            <div class="content-post">
-                                <a class="posted-date" href="<?php the_permalink(); ?>">
+                            <ul class="content-post">
+                                <li>
+                                    <a class="posted-date" href="<?php the_permalink(); ?>">
                             <span class="date">
                                 <span class="date-number"><?php the_time('j'); ?></span>
                                 <span class="date-month"><?php the_time('F'); ?></span>
                             </span>
-                                </a>
-                                <ul class="post-meta">
-                                    <li>
-                                        <span class="fa fa-comment"></span>
-                                        <a href="<?php the_permalink(); ?>">
-                                            <?php global $post;
-                                            echo $post->comment_count;
-                                            echo " comments"; ?>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php the_permalink(); ?>">
-                                            <span class="fa fa-folder"></span>
-                                            <?php
-                                            $category = get_the_category();
-                                            echo " Category ";
-                                            echo $category[0]->category_count;
-                                            ?>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <ul class="post-meta">
+                                        <li>
+                                            <span class="fa fa-comment"></span>
+                                            <a href="<?php the_permalink(); ?>">
+                                                <?php global $post;
+                                                echo $post->comment_count;
+                                                echo " comments"; ?>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php the_permalink(); ?>">
+                                                <span class="fa fa-folder"></span>
+                                                <?php
+                                                $category = get_the_category();
+                                                echo " Category ";
+                                                echo $category[0]->category_count;
+                                                ?>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                             <div class="post-description">
                                 <div class="post-img"><?php the_post_thumbnail(); ?></div>
                                 <h2 class="post-title">
                                     <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </h2>
-                                        <span
-                                            class="blog-date"><?php the_time('jS, F, Y') ?></span>
+                                <span class="blog-date"><?php the_time('jS, F, Y') ?></span>
                                 <p class="post-content-single"><?php the_excerpt(); ?></p>
                             </div>
                         </div>

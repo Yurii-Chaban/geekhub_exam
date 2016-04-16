@@ -792,7 +792,7 @@ a:active {
 .page-content,
 .entry-content,
 .entry-summary {
-	margin: 1.5em 0 0;
+	margin-left: 100px;
 }
 
 .page-links {
